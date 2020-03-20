@@ -104,8 +104,8 @@ travel['tw_out'] = process('tw-outbound.csv')
 #             'taiwan' 	      :  422935,
 #             'germany' 	      :  356797 }
 
-denom = { 'sg_in' : 1/6.2, 'sg_out' : 10/73.0,
-          'tw_in' : 0.3/6.2, 'tw_out' : 3/73.0,
+denom = { 'sg_in' : 0.5/6.2, 'sg_out'  : 5/73.0,
+          'tw_in' : 0.15/6.2, 'tw_out' : 1.5/73.0,
         }
 origins = dict()
 #origins['sg_all'] = [r['Origin'] for r in table_rows if 'Imported' in r['Source']]
@@ -132,7 +132,11 @@ for k, v in origins.items():
     prev[k][c]    = 100 * counts[k][c] / (denom[k] * travel[k][c])
     prev_hi[k][c] = 100 * (counts[k][c] + sqrt(counts[k][c])) / (denom[k] * travel[k][c])
     prev_lo[k][c] = 100 * (counts[k][c] - sqrt(counts[k][c])) / (denom[k] * travel[k][c])
-  
+
+#import pandas as pd
+#df = pd.DataFrame(prev)
+#df.to_csv('tw-sg-data.csv')
+
 
 #l = range(len(x.keys()))
 #plt.bar(l, x.values(), align='center')
