@@ -1,0 +1,32 @@
+Hong Kong	145472
+China	91085
+Japan	135614
+South Korea	152937
+India	2813
+Middle East	1494
+Malaysia	28884
+Singapore	26008
+Indonesia	15693
+Philippines	44051
+Thailand	25688
+Vietnam	28947
+Canada	11400
+United States	49416
+Mexico	302
+Brazil	444
+Argentina	166
+Belgium	629
+France	4363
+Germany	4466
+Italy	1448
+Netherlands	2144
+Switzerland	823
+Spain	1053
+United Kingdom	6631
+Austria	837
+Greece	143
+Sweden	830
+Russia	1397
+Australia	14185
+New Zealand	2231
+South Africa	471

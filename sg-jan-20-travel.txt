@@ -1,0 +1,52 @@
+Canada	15,035
+United States	72,539
+Other Markets in Americas	11,084
+Brunei Darussalam	5,362
+Indonesia	282,065
+Malaysia	90,688
+Myanmar	11,339
+Philippines	49,514
+Thailand	34,139
+Vietnam	46,333
+Other Markets in Southeast Asia	9,390
+China	329,003
+Hong Kong	38,677
+Taiwan	42,600
+Other Markets in Greater China	3,054
+Japan	57,218
+South Korea	70,267
+Other Markets in North Asia	36
+Bangladesh	11,630
+India	99,629
+Pakistan	1,774
+Sri Lanka	6,234
+Other Markets in South Asia	4,038
+Iran	493
+Israel	2,958
+Kuwait	1,127
+Saudi Arabia	3,006
+United Arab Emirates	4,176
+Other Markets in West Asia	1,782
+Belgium and Luxembourg	2,704
+Denmark	3,834
+Finland	3,711
+France	16,606
+Germany	40,201
+Italy	10,654
+Netherlands	7,938
+Norway	3,260
+Ireland	2,486
+Russia	15,878
+Spain	4,871
+Sweden	6,967
+Switzerland	8,646
+United Kingdom	61,618
+Other Markets in Europe	35,710
+Australia	130,590
+New Zealand	15,018
+Other Markets in Oceania	2,196
+Egypt	584
+Mauritius	1,185
+South Africa	4,659
+Other Markets in Africa	2,837
+Not Stated	1
