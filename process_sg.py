@@ -118,24 +118,65 @@ origins['tw_out'] = [r['Origin'] for r in tables['tw'] if 'Imported' in r['Sourc
 
 import collections
 from math import sqrt
-counts = dict()
+counts = collections.defaultdict(int)
+
+countries = set()
+for k, v in travel.items():
+  countries = countries | v.keys()
+sources = ['sg_in', 'sg_out', 'tw_in', 'tw_out']
+alpha = dict()
+for s in sources:
+  alpha[s] = 1.0
+lam = dict()
+for c in countries:
+  lam[c] = 1.0
+for k, v in origins.items():
+  counts[k] = collections.Counter(v)
+
+import numpy as np
+for _ in range(100):
+  # alpha update
+  for s in sources:
+    num, den = 0.0, 0.0
+    for c in travel[s].keys():
+      num += counts[s][c]
+      den += lam[c] * travel[s][c]
+    alpha[s] = num / den
+  # normalize so that average is 3e-4
+  alpha_mean = np.mean([a for a in alpha.values()])
+  for s in sources:
+    alpha[s] = alpha[s] * 5e-4 / alpha_mean
+  # lambda update
+  for c in countries:
+    num, den = 0.0, 0.0
+    for s in sources:
+      if c in travel[s].keys():
+        num += counts[s][c]
+        den += alpha[s] * travel[s][c]
+    lam[c] = num / den
+
 prev = dict()
 prev_hi = dict()
 prev_lo = dict()
 for k, v in origins.items():
-  counts[k] = collections.Counter(v)
-  countries = counts[k].keys() & travel[k].keys()
+  countries = travel[k].keys()
+  #countries = counts[k].keys() & travel[k].keys()
   prev[k] = dict()
+  prev[k+'_pred'] = dict()
   prev_hi[k] = dict()
   prev_lo[k] = dict()
   for c in countries:
-    prev[k][c]    = 100 * counts[k][c] / (denom[k] * travel[k][c])
-    prev_hi[k][c] = 100 * (counts[k][c] + sqrt(counts[k][c])) / (denom[k] * travel[k][c])
-    prev_lo[k][c] = 100 * (counts[k][c] - sqrt(counts[k][c])) / (denom[k] * travel[k][c])
+    prev[k][c]    = counts[k][c] / (alpha[k] * travel[k][c])
+    prev_hi[k][c] = (counts[k][c] + sqrt(counts[k][c])) / (alpha[k] * travel[k][c])
+    prev_lo[k][c] = (counts[k][c] - sqrt(counts[k][c])) / (alpha[k] * travel[k][c])
+    prev[k+'_pred'][c] = travel[k][c] * alpha[k] * lam[c]
+  prev[k+'_count'] = counts[k]
 
-#import pandas as pd
-#df = pd.DataFrame(prev)
-#df.to_csv('tw-sg-data.csv')
+prev['all'] = lam
+
+import pandas as pd
+df = pd.DataFrame(prev)
+df.to_csv('tw-sg-data.csv')
 
 
 #l = range(len(x.keys()))
